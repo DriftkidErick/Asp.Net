@@ -1,0 +1,62 @@
+﻿@page
+@model Week6_labs_ErickC.Pages.Admin.DeleteTicketModel
+@{
+    ViewData["Title"] = "DeleteTicket";
+}
+
+<h1>Delete Ticket</h1>
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div>
+
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAsk.Ask_Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAsk.Ask_Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAsk.Ask_Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAsk.Open_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAsk.Cust_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAsk.Support_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAsk.Support_Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tAsk.Close_Date)
+        </dd>
+
+    </dl>
+
+    @*We only need the Ticket_ID for deleting because we are deleting  a record, not fields and Ticket ID is a primary key*@
+    <form method="post">
+        <input type="hidden" asp-for="tAsk.Ask_ID" />
+
+        <input type="submit" value="Delete" class="btn btn-default" />
+
+        <a asp-page="/Admin/ControlPanel">Back to List</a>
+    </form>
+
+</div>

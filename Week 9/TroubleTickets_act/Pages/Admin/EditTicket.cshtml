@@ -1,0 +1,92 @@
+﻿@page
+@model TroubleTickets.Pages.Admin.EditTicketModel
+@{
+    ViewData["Title"] = "EditTicket";
+}
+
+<h1>Edit Ticket</h1>
+
+<form method="post">
+
+    @*WE are using regular html input but with Binding to specifi class properties and a more user-friendly description*@
+
+    <div class="form-group">
+        <label asp-for="tTicket.Ticket_Title"></label>
+        <input asp-for="tTicket.Ticket_Title" type="text" class="form-control" placeholder="Ticket Title" />
+        <span asp-validation-for="tTicket.Ticket_Title" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Ticket_Desc"></label>
+        <input asp-for="tTicket.Ticket_Desc" type="text" class="form-control" placeholder="Description of Problem" />
+        <span asp-validation-for="tTicket.Ticket_Desc" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Category"></label>
+        <input asp-for="tTicket.Category" type="text" class="form-control" placeholder="Category" />
+        <span asp-validation-for="tTicket.Category" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Reporting_Email"></label>
+        <input asp-for="tTicket.Reporting_Email" type="text" class="form-control" placeholder="Your Email" />
+        <span asp-validation-for="tTicket.Reporting_Email" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Orig_Date"></label>
+        <input asp-for="tTicket.Orig_Date" type="text" class="form-control" placeholder="Post Date" />
+        <span asp-validation-for="tTicket.Orig_Date" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Responder_Email"></label>
+        <input asp-for="tTicket.Responder_Email" type="text" class="form-control" placeholder="Responder" />
+        <span asp-validation-for="tTicket.Responder_Email" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Responder_Notes"></label>
+        <input asp-for="tTicket.Responder_Notes" type="text" class="form-control" placeholder="Responder Note" />
+        <span asp-validation-for="tTicket.Responder_Notes" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tTicket.Active" class="control-label"></label>
+        <select asp-for="tTicket.Active" class="form-control">
+            <option value="">--Select Activity Level --</option>
+            <option value="false">Closed</option>
+            <option value="true">Active</option>
+        </select>
+        <span asp-validation-for="tTicket.Active" class="text-danger"></span>
+    </div>
+
+    @*Hidden field with the ID*@
+    <input asp-for="tTicket.Ticket_ID" type="hidden" class="form-control" />
+
+    @*Button that will submit the form data via a post method*@
+    <button type="submit" class="btn btn-primary">Update</button>
+
+</form>
+
+@*Scripts to incorporate the client side validation of the input fields in th view*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+@{ 
+    //Provide a method of feedback if we run across an error
+    if (Model.tTicket != null && Model.tTicket.Feedback != null)
+    {
+        <h1>Result</h1>
+        <p>@Model.tTicket.Feedback</p>
+    }
+}

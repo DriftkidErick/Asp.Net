@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @Model.FName</h1>
+    
+    <table class="table table-bordered table-sm table-striped">
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Category</th>
+                <th>Submitted</th>
+                <th>Active</th>
+                <th>Customer Email</th>
+                <th>Support Email</th>
+                <th>Response</th>
+               
+            </tr>
+
+        </thead>
+
+        <tbody>
+            @if (Model == null)
+            {
+                <tr>
+                    <td colspan="7" class="text-center">No Model</td>
+                </tr>
+            }
+
+            else
+            {
+                @foreach (var p in Model.tix)
+                {
+                    <tr>
+                        <td>@p.Ask_ID</td>
+                        <td>@p.Ask_Brand</td>
+                        <td>@p.Ask_Model</td>
+                        
+                        <td>@p.Ask_Category</td>
+                        <td>@p.Open_Date</td>
+                        
+                        
+
+                        @{
+                            if (p.Ask_Active == true)
+                            {
+                                <td>Active</td>
+                            }
+                            else
+                            {
+                                <td>Closed</td>   
+                            }
+                        }
+                        <td>@p.Cust_email</td>
+                        <td>@p.Support_email</td>
+                        <td style="width:100%;">@p.Support_Notes</td>
+                    </tr>   
+                }
+            }
+        </tbody>
+    </table>
+</div>

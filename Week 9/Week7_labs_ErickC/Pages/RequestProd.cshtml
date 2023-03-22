@@ -1,0 +1,87 @@
+﻿@page
+@model Week6_labs_ErickC.Pages.RequestProdModel
+@{
+    ViewData["Title"] = "RequestProd";
+}
+
+<h1>Request A Product</h1>
+
+@* The Goal with the page is to allow customers to request for performace parts that are out of stock/ something we do not carry*@
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="tAsk.Ask_Brand">Brand </label>
+        <input asp-for="tAsk.Ask_Brand" type="text" class="form-control" placeholder="Brand" />
+        <span asp-validation-for="tAsk.Ask_Brand" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tAsk.Ask_Model">Model</label>
+        <input asp-for="tAsk.Ask_Model" type="text" class="form-control" placeholder="Model" />
+        <span asp-validation-for="tAsk.Ask_Model" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tAsk.Ask_Category">Category</label>
+        <input asp-for="tAsk.Ask_Category" type="text" class="form-control" placeholder="Category" />
+        <span asp-validation-for="tAsk.Ask_Category" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tAsk.Ask_Quantity">Quantity</label>
+        <input asp-for="tAsk.Ask_Quantity" type="text" class="form-control" placeholder="Quantity" />
+        <span asp-validation-for="tAsk.Ask_Quantity" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tAsk.Ask_Description">Description</label>
+        <input asp-for="tAsk.Ask_Description" type="text" class="form-control" placeholder="Description" />
+        <span asp-validation-for="tAsk.Ask_Description" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tAsk.Cust_email">Your Email</label>
+        <input asp-for="tAsk.Cust_email" type="text" class="form-control" placeholder="Your Email" />
+        <span asp-validation-for="tAsk.Cust_email" class="text-danger"></span>
+
+    </div>
+    
+   @* <input type="text" asp-for="tAsk.Ask_Brand" placeholder="Brand" />
+    <br />
+    <input type="text" asp-for="tAsk.Ask_Model" placeholder="Model" />
+    <br />
+    <input type="text" asp-for="tAsk.Ask_Category" placeholder="Category" />
+    <br />
+    <input type="text" asp-for="tAsk.Ask_Quantity" placeholder="Quantity" />
+    <br />
+    <input type="text" asp-for="tAsk.Ask_Description" placeholder="Description" />
+    <br />
+    <input type="text" asp-for="tAsk.Cust_email" placeholder="Your Email" />*@
+
+    @* Button that will submit form data via a POST method*@
+    <button type="submit">Submit</button>
+
+</form>
+
+@*Scripts to incorporate the client side validation of the input fields in  this view*@
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/jquery-validation/dist/additional-methods.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/dist"></script>
+
+@{
+    if (Model.tAsk is null == false) //Meaning that if the info is filled in
+    {
+        <h1>Results</h1>
+        <p>@Model.tAsk.Feedback</p>
+        //<p>Brand: @Model.tAsk.Ask_Brand</p>
+        //<p>Model: @Model.tAsk.Ask_Model</p>
+        //<p>Category: @Model.tAsk.Ask_Category</p>
+        //<p>Your Email: @Model.tAsk.Cust_email</p>
+    }
+}

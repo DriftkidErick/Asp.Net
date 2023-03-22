@@ -1,0 +1,92 @@
+﻿@page
+@model Week6_labs_ErickC.Pages.Admin.EditTicketModel
+@{
+    ViewData["Title"] = "EditTicket";
+}
+
+<h1>Edit Ticket</h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="aAsk.Ask_Brand"></label>
+        <input asp-for="aAsk.Ask_Brand" type="text" class="form-control" placeholder="Product Brand" />
+        <span asp-validation-for="aAsk.Ask_Brand" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Ask_Model"></label>
+        <input asp-for="aAsk.Ask_Model" type="text" class="form-control" placeholder="Model" />
+        <span asp-validation-for="aAsk.Ask_Model" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Ask_Category"></label>
+        <input asp-for="aAsk.Ask_Category" type="text" class="form-control" placeholder="Category" />
+        <span asp-validation-for="aAsk.Ask_Category" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Cust_email"></label>
+        <input asp-for="aAsk.Cust_email" type="text" class="form-control" placeholder="Customer Email" />
+        <span asp-validation-for="aAsk.Cust_email" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Open_Date"></label>
+        <input asp-for="aAsk.Open_Date" type="text" class="form-control" placeholder="Post Date" />
+        <span asp-validation-for="aAsk.Open_Date" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Support_email"></label>
+        <input asp-for="aAsk.Support_email" type="text" class="form-control" placeholder="Responder" />
+        <span asp-validation-for="aAsk.Support_email" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Support_Notes"></label>
+        <input asp-for="aAsk.Support_Notes" type="text" class="form-control" placeholder="Responder Note" />
+        <span asp-validation-for="aAsk.Support_Notes" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="aAsk.Ask_Active" class="control-label"></label>
+        <select asp-for="aAsk.Ask_Active" class="form-control">
+            <option value="">--Select Activity Level --</option>
+            <option value="false">Closed</option>
+            <option value="true">Active</option>
+        </select>
+        <span asp-validation-for="aAsk.Ask_Active" class="text-danger"></span>
+    </div>
+
+    @*Hidden field with the ID*@
+    <input asp-for="aAsk.Ask_ID" type="hidden" class="form-control" />
+
+    @*Button that will submit the form data via a post method*@
+    <button type="submit" class="btn btn-primary">Update</button>
+
+</form>
+
+@*Scripts to incorporate the client side validation of the input fields in th view*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+@{
+    //Provide a method of feedback if we run across an error
+    if (Model.aAsk != null && Model.aAsk.Feedback != null)
+    {
+        <h1>Result</h1>
+        <p>@Model.aAsk.Feedback</p>
+    }
+}
+
+

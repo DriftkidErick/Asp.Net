@@ -1,0 +1,39 @@
+﻿@page
+@model Week6_labs_ErickC.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Login Page</h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="tAdmin.AskAdmin_Email"></label>
+        <input asp-for="tAdmin.AskAdmin_Email" type="text" class="form-control" placeholder="Username" />
+        <span asp-validation-for="tAdmin.AskAdmin_Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tAdmin.AskAdmin_PW"></label>
+        <input asp-for="tAdmin.AskAdmin_PW" type="text" class="form-control" placeholder="Password" />
+        <span asp-validation-for="tAdmin.AskAdmin_PW" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+</form>
+
+@*Scripts to incorpoate the client side validation of the input fields in this view*@
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+@{
+    if (Model.tAdmin != null && Model.tAdmin.Feedback != null)
+    {
+        <h1>Results</h1>
+        <p>@Model.tAdmin.Feedback</p>
+    }
+}

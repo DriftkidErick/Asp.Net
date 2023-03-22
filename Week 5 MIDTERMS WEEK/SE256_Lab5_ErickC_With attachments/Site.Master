@@ -1,0 +1,100 @@
+﻿<%--Master instead of page --%>
+<%--Rest is similar to page, we set the programming language, wireup events, code-behind and Inheriting class --%>
+<%--So we can pu code in master code-behind tha would work with all pages that us this master layout --%>
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SE256_Activity_ErickC.SiteMaster" %>
+
+<%--Start of html --%>
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%--Using razor scripting to access a page's properties to access and display the Title property in the browser tab --%>
+    <title><%: Page.Title %> -Ck's Wheels and Deals</title>
+
+    <%--Reserved space to bring in outside Scripts --%>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <%--CSS Bundles --%>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    
+
+</head>
+<body>
+    <form runat="server">
+
+        <%--Pullingg in the individual scripts... was automatically because this was no an empty project --%>
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <%--Nav Bar Header --%>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">CK's Auto</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="Products.aspx">Product</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="https://localhost:44384/Backend/Default">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <%--Main Content & Footer in One Div --%>
+        <div class="container body-content">
+            <%-- Placeholder for breaking news... Could be static for the home page or driven by data from a database --%>
+            <%--If here is any news.... then it will show and have a colored background --%>
+            <div style="background-color: lightblue;">
+                <asp:ContentPlaceHolder ID ="BreakingNewsContent" runat="server">
+                    <h3>*Important*</h3>
+                    <h4>Website is updated daily with new items</h4>
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <%--Placeholder where each page's content will go.. Think like using you jacket to save a seat for a friend at the movies --%>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <hr />
+
+            <%--Neat trick, this uses Razor script to all C# to get the current year, So copyright tage is always up to date --%>
+            <footer style="text-align:center">
+                <p>&copy; <%: DateTime.Now.Year %> - Ck's Wheels and Deals</p>
+            </footer>
+        </div>
+
+    </form>
+</body>
+</html>
